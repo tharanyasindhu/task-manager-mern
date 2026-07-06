@@ -1,4 +1,4 @@
-# Task Management Dashboard (MERN Stack)
+# Task Management Dashboard (MERN Stacks)
 
 ## Project Overview
 
