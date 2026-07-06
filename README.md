@@ -1,145 +1,334 @@
 # Task Management Dashboard (MERN Stack)
 
-A full-stack task management dashboard built with **MongoDB, Express, React, and Node.js (MERN)**. Users can register, log in, and manage tasks with status, priority, and due dates, all tracked on a dashboard with live stats.
+## Project Overview
 
-## Features
-- JWT-based authentication (register/login)
-- Create, read, update, delete tasks
-- Filter tasks by status (To Do / In Progress / Completed)
-- Dashboard stat cards (total, todo, in-progress, completed)
-- Responsive UI built with Tailwind CSS
+Task Management Dashboard is a full-stack web application developed using the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
-## Tech Stack
-| Layer | Tech |
-|---|---|
-| Frontend | React 18, Vite, React Router, Tailwind CSS, Axios |
-| Backend | Node.js, Express, JWT, bcryptjs |
-| Database | MongoDB with Mongoose |
+The purpose of this project is to create a simple and efficient platform where users can create an account, log in securely, and manage their daily tasks from a personalized dashboard.
 
-## Project Structure
+The application allows users to add, update, delete, and track tasks based on their progress. A dashboard view provides a quick overview of task statistics, helping users monitor completed and pending tasks easily.
+
+This project was developed as part of my internship task to understand and implement full-stack application development using modern web technologies.
+
+---
+
+# Features
+
+## User Authentication
+
+* User registration and login functionality
+* Secure password encryption using bcryptjs
+* JWT-based authentication for protected routes
+* User-specific task management
+
+## Task Management
+
+* Create new tasks
+* View all created tasks
+* Update task details
+* Delete tasks
+* Change task status:
+
+  * To Do
+  * In Progress
+  * Completed
+
+## Dashboard
+
+* Displays task summary statistics:
+
+  * Total tasks
+  * Pending tasks
+  * Tasks in progress
+  * Completed tasks
+* Real-time updates when tasks are modified
+
+## User Interface
+
+* Responsive design for different screen sizes
+* Clean and simple dashboard layout
+* Built using Tailwind CSS for styling
+
+---
+
+# Technologies Used
+
+## Frontend
+
+* React.js
+* Vite
+* React Router
+* Axios
+* Tailwind CSS
+
+## Backend
+
+* Node.js
+* Express.js
+* JWT Authentication
+* bcryptjs
+
+## Database
+
+* MongoDB
+* Mongoose
+
+## Development Tools
+
+* IntelliJ IDEA Community Edition
+* Git & GitHub
+* MongoDB Atlas / Local MongoDB
+
+---
+
+# Project Structure
+
 ```
 task-manager-mern/
+
+│
 ├── backend/
-│   ├── config/db.js
-│   ├── middleware/auth.js
-│   ├── models/User.js
-│   ├── models/Task.js
-│   ├── routes/auth.js
-│   ├── routes/tasks.js
+│   ├── config/
+│   │   └── db.js
+│   │
+│   ├── middleware/
+│   │   └── auth.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   └── Task.js
+│   │
+│   ├── routes/
+│   │   ├── auth.js
+│   │   └── tasks.js
+│   │
 │   ├── server.js
 │   ├── .env.example
 │   └── package.json
+│
 └── frontend/
+
     ├── src/
-    │   ├── api/axios.js
-    │   ├── context/AuthContext.jsx
-    │   ├── components/ (Navbar, TaskForm, TaskList, TaskItem)
-    │   ├── pages/ (Login, Register, Dashboard)
+    │   ├── api/
+    │   ├── components/
+    │   ├── context/
+    │   ├── pages/
     │   ├── App.jsx
     │   └── main.jsx
-    ├── index.html
+    │
     ├── .env.example
     └── package.json
 ```
 
 ---
 
-## 1. Prerequisites
+# How I Developed This Project
 
-- [Node.js](https://nodejs.org/) (v18+) and npm installed
-- [MongoDB](https://www.mongodb.com/try/download/community) installed locally, OR a free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) cluster
-- [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/) installed
-- A GitHub account
-- [Git](https://git-scm.com/downloads) installed
+## 1. Backend Development
+
+I started by creating the backend using Node.js and Express.js.
+
+The backend handles:
+
+* User authentication
+* Task APIs
+* Database operations
+
+I connected the application with MongoDB using Mongoose and created database models for:
+
+### User Model
+
+Stores:
+
+* Username
+* Email
+* Encrypted password
+
+### Task Model
+
+Stores:
+
+* Task title
+* Description
+* Status
+* Priority
+* Due date
+* User reference
+
+JWT authentication was implemented to protect task-related routes and ensure users can access only their own tasks.
 
 ---
 
-## 2. Set Up the Project in IntelliJ IDEA CE
+## 2. Frontend Development
 
-IntelliJ IDEA CE doesn't have built-in Node.js run configurations like the Ultimate edition, but it's a great editor for this project — you'll run npm commands via IntelliJ's integrated **Terminal**.
+The frontend was developed using React.js with Vite.
 
-1. **Open IntelliJ IDEA CE** → `File > Open` → select the `task-manager-mern` folder (once you've downloaded/extracted it).
-2. IntelliJ will index the project. If prompted to install the Node.js plugin, accept it (`Settings > Plugins > Marketplace > search "Node.js"` if it doesn't prompt automatically) — this gives you syntax highlighting and npm integration.
-3. Open the integrated terminal: `View > Tool Windows > Terminal` (or `Alt+F12`).
+I created different pages and components:
 
-### Backend setup (in the Terminal)
-```bash
-cd backend
-npm install
-cp .env.example .env
+### Pages
+
+* Login Page
+* Register Page
+* Dashboard Page
+
+### Components
+
+* Navigation Bar
+* Task Form
+* Task List
+* Task Item
+
+Axios was used to communicate between the React frontend and Express backend APIs.
+
+React Router was implemented for page navigation, and Tailwind CSS was used to build a responsive user interface.
+
+---
+
+# Running the Project Locally
+
+## Prerequisites
+
+Make sure you have:
+
+* Node.js installed
+* npm installed
+* MongoDB installed or MongoDB Atlas account
+* Git installed
+
+---
+
+# Backend Setup
+
+Navigate to the backend folder:
+
 ```
-Open `.env` and set your values:
+cd backend
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Create a `.env` file:
+
 ```
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
-JWT_SECRET=<put a long random string here>
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 JWT_EXPIRE=7d
 ```
-> If using MongoDB Atlas instead of a local install, paste your Atlas connection string as `MONGO_URI`.
 
-Start the backend:
-```bash
+Start the backend server:
+
+```
 npm run dev
 ```
-You should see `MongoDB connected` and `Server running on port 5000`.
 
-### Frontend setup (open a **second** terminal tab in IntelliJ)
-```bash
-cd frontend
-npm install
-cp .env.example .env
-npm run dev
+The backend will run on:
+
 ```
-Vite will start the frontend at `http://localhost:5173`. Open that URL in your browser — you should see the Login page.
-
-### Try it out
-1. Go to `http://localhost:5173/register` and create an account.
-2. You'll be redirected to the dashboard.
-3. Add a few tasks, change their status, edit, and delete them — watch the stat cards update.
+http://localhost:5000
+```
 
 ---
 
-## 3. Push the Project to GitHub
+# Frontend Setup
 
-### Option A: Create the repo on GitHub first, then clone it
-1. On [github.com](https://github.com), click **New repository**, name it e.g. `task-manager-mern`, keep it empty (no README/gitignore), and click **Create repository**.
-2. In IntelliJ's terminal, clone it into a separate folder and copy your project files in, OR (simpler) just initialize git directly inside your existing project folder — see Option B.
+Open another terminal and navigate to frontend:
 
-### Option B: Initialize git inside your existing project (recommended)
-In the IntelliJ terminal, at the root of `task-manager-mern`:
-```bash
+```
+cd frontend
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Create a `.env` file:
+
+```
+VITE_API_URL=http://localhost:5000
+```
+
+Start the React application:
+
+```
+npm run dev
+```
+
+The frontend will run on:
+
+```
+http://localhost:5173
+```
+
+---
+
+# Application Workflow
+
+1. User creates an account through the registration page.
+2. User logs in using their credentials.
+3. JWT authentication verifies the user.
+4. User is redirected to the dashboard.
+5. User can:
+
+   * Add tasks
+   * Update task status
+   * Edit task details
+   * Delete completed or unwanted tasks
+6. Dashboard statistics update automatically based on task changes.
+
+---
+
+# GitHub Upload
+
+The project was uploaded to GitHub using Git version control.
+
+Steps followed:
+
+```
 git init
+
 git add .
+
 git commit -m "Initial commit: MERN task management dashboard"
+
 git branch -M main
-git remote add origin https://github.com/<your-username>/task-manager-mern.git
+
+git remote add origin <repository-url>
+
 git push -u origin main
 ```
-Replace `<your-username>` with your actual GitHub username, and make sure you've created the empty repo on GitHub first (Option A, step 1).
 
-### Using IntelliJ's built-in Git UI instead of the terminal
-1. `VCS > Enable Version Control Integration` → choose **Git**.
-2. Right-click the project root → `Git > Add` to stage all files.
-3. `Commit` (Ctrl+K) → write a message → Commit.
-4. `Git > Push` (Ctrl+Shift+K) → IntelliJ will ask you to define a remote the first time — paste your GitHub repo URL.
-
-### Important: don't commit your `.env` files
-The included `.gitignore` already excludes `.env`, `node_modules/`, and build folders, so your JWT secret and DB credentials stay out of GitHub. Only `.env.example` (with placeholder values) gets committed — this is exactly what you want for a project submission.
+Sensitive files such as `.env` and `node_modules` are excluded using `.gitignore`.
 
 ---
 
-## 4. What to Submit to ScholarX
+# Future Improvements
 
-Typically for a project submission like this, include:
-- The **GitHub repo link** (make sure it's public, or invite the reviewer as a collaborator)
-- A short **README** (this file already covers setup — you can trim it down)
-- Optionally, a few **screenshots** of the login page and dashboard
-- If required, a short **demo video** walking through register → add task → update status → delete
+Some features that can be added in future:
+
+* Task search functionality
+* Sorting tasks based on due date
+* Dark mode support
+* Task notifications
+* Deploying frontend and backend online
 
 ---
 
-## 5. Next Steps / Ideas to Extend (optional, for extra credit)
-- Add task search/sort by due date
-- Add pagination for large task lists
-- Add a "dark mode" toggle
-- Deploy backend to Render/Railway and frontend to Vercel/Netlify, then use the live URL in your submission
+# Project Outcome
+
+Through this project, I gained practical experience in:
+
+* Building a complete MERN stack application
+* Creating REST APIs
+* Implementing authentication
+* Connecting frontend and backend
+* Working with MongoDB databases
+* Managing projects using Git and GitHub
+
+This project helped me understand the complete workflow of developing and deploying a full-stack web application.
