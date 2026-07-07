@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.js";
 import taskRoutes from "./routes/tasks.js";
 
 dotenv.config();
+console.log(process.env.MONGO_URI);
 connectDB();
 
 const app = express();
